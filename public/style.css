@@ -1,0 +1,192 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+    font-size: 16px; /* Base font size for better readability */
+    line-height: 1.5; /* Improve text spacing */
+}
+
+.content {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.form-container {
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.form-container .header h1 {
+    text-align: center;
+    margin-bottom: 10px; /* Slightly increase spacing */
+    margin-top: 40px; /* Adjust for better balance */
+    font-size: 28px; /* Increase font size for better emphasis */
+    color: #333;
+}
+
+.form-container .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    body {
+        background-color: #e1e6ee;
+    }
+
+    .form-container {
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+
+    .content {
+        background: #f4f4f9;
+        min-height: 100vh;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px; /* Increase spacing for better readability */
+    font-weight: bold;
+    font-size: 16px; /* Ensure consistency with base font size */
+}
+
+.form-container input {
+    width: 100%;
+    padding: 12px 15px; /* Slightly increase padding for better usability */
+    margin-bottom: 20px; /* Adjust spacing for better alignment */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-container input:focus {
+    outline: none;
+    border-color: #007BFF;
+    /* Light blue border */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Light blue glow */
+}
+
+.form-container button {
+    width: auto;
+    padding: 15px 30px;
+    margin: 40px auto 0; /* Adjust spacing for better alignment */
+    /* margin-top: 40px; */
+    background-color: #2DD881;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px; /* Slightly larger font for better emphasis */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #1eae70;
+}
+
+.form-container button:disabled {
+    background-color: #cfcfcf;
+}
+
+.spinner {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid transparent;
+    border-top: 2px solid #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.success-message {
+    text-align: center;
+    color: #28a745;
+    font-size: 20px; /* Ensure consistency with other headings */
+    padding: 30px; /* Adjust padding for better balance */
+    margin: 15px; /* Adjust margin for better spacing */
+    border-radius: 8px;
+    background-color: #c4fad1;
+}
+
+.error-message {
+    text-align: center;
+    color: #ff4646;
+    font-size: 20px; /* Slightly larger font for better visibility */
+    padding: 30px; /* Adjust padding for better balance */
+    margin: 15px; /* Adjust margin for better spacing */
+    border-radius: 8px;
+    background-color: #ffa5a5;
+}
+
+.form-container .checkbox-group {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Checkbox and label */
+    align-items: start; /* Top-align contents */
+    gap: 15px; /* Increase horizontal spacing */
+    margin-bottom: 25px;
+    margin-left: 5px;
+}
+
+.form-container .checkbox-group input[type="checkbox"] {
+    width: 20px; /* Consistent size */
+    height: 20px; /* Consistent size */
+    appearance: auto; /* Retain default styling */
+    cursor: pointer; /* Add pointer cursor */
+}
+
+.form-container .checkbox-group label {
+    margin-top: 0px; /* Adjust spacing for better alignment */
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-size: 15px; /* Slightly smaller font for secondary text */
+}
+
+.form-container .checkbox-group .description {
+    margin-top: 5px;
+    font-size: 14px; /* Ensure consistency for descriptions */
+    color: #555;
+}
+
+.form-container .checkbox-group .description .frequency {
+    font-style: italic;
+    font-size: 12px;
+    color: #777;
+    margin-left: 5px;
+}
+
+.form-container .checkbox-group b {
+    font-weight: 600;
+    /* Decrease font weight */
+}

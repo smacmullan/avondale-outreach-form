@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avondale Community Outreach</title>
+    <link rel="stylesheet" href="public/style.css">
+    <link rel="icon" type="image/x-icon" href="public/images/favicon.svg">
+</head>
+
+<body>
+    <div class="content">
+        <div class="form-container">
+            <div class="header">
+                <h1>Avondale Community Outreach</h1>
+            </div>
+            <div style="padding: 20px;">
+                <p>Stay connected with your neighbors! </p>
+                <p>Sign up below to receive updates from local community groups bringing neighbors together through news, events, and shared interests.</p>
+            </div>
+            <form class="form" id="outreachForm">
+
+                <label style="margin-bottom: 25px; font-size: 20px;">Community Newsletter Sign-ups</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-wals" name="newsletter"
+                        value="West Avondale/Logan Square Newsletter" checked>
+                    <label for="newsletter-wals">
+                        <b>West Avondale/Logan Square Newsletter</b>
+                        <p class="description">
+                            Hyperlocal news produced by Larry Garret since 1995.
+                            <span class="frequency">Semi-monthly.</span>
+                        </p>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-ana" name="newsletter"
+                        value="Avondale Neighborhood Association" checked>
+                    <label for="newsletter-ana">
+                        <b>Avondale Neighborhood Association</b>
+                        <a href="https://www.avondaleneighbors.org" target="_blank"
+                            style="display: block; margin-top: 5px;">www.avondaleneighbors.org</a>
+                        <p class="description">
+                            Community announcements and events around Avondale.
+                            <span class="frequency">Weekly.</span>
+                        </p>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-aga" name="newsletter" value="Avondale Gardening Alliance"
+                        checked>
+                    <label for="newsletter-aga">
+                        <b>Avondale Gardening Alliance</b>
+                        <a href="https://avondalegardeningalliance.wordpress.com" target="_blank"
+                            style="display: block; margin-top: 5px;">avondalegardeningalliance.wordpress.com</a>
+                        <p class="description">
+                            Free gardening workshops and events focused on bringing together neighbors.
+                            <span class="frequency">Semi-monthly.</span>
+                        </p>
+                    </label>
+                </div>
+
+                <label style="margin-top: 40px; margin-bottom: 5px; font-size: 20px;">Block Club Interest</label>
+                <p>I am interested in forming a block club with my neighbors.</p>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="block-club-interest" name="block-club-interest" value="yes">
+                    <label for="block-club-interest">Yes, please contact me to help organize a block club on my
+                        street.</label>
+                </div>
+
+
+                <label style="margin-bottom: 25px; margin-top: 40px; font-size: 20px;">Contact Information</label>
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email" required>
+
+                <label for="street-address">Address (Optional)</label>
+                <input type="text" id="street-address" name="street-address" placeholder="Address"
+                    autocomplete="street-address">
+
+                <button type="submit" id="submitButton">
+                    Submit
+                </button>
+            </form>
+            <div id="successMessage" class="success-message" style="display: none;">
+                <p>Thank you for signing up!</p>
+                <p style="font-size: 16px;">Keep an eye out for newsletter confirmation emails. It
+                    might be a few days before these are sent.</p>
+            </div>
+            <div id="errorMessage" class="error-message" style="display: none;">
+                An error occurred. Please try again.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const FORM_VERSION = "base";
+        document.getElementById("outreachForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const submitButton = document.getElementById("submitButton");
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Submitting... <span class="spinner"></span>';
+
+            const errorMessage = document.getElementById("errorMessage");
+            // hide error message (if visible)
+            errorMessage.style.display = "none";
+
+            const data = {
+                name: document.getElementById("name").value,
+                address: document.getElementById("street-address").value,
+                email: document.getElementById("email").value,
+                newsletters: Array.from(document.querySelectorAll('input[name="newsletter"]:checked')).map(checkbox => checkbox.value).join(','),
+                blockClubInterest: document.getElementById("block-club-interest").checked ? "Yes" : "No",
+                formVersion: FORM_VERSION
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbyoq6sI7Wr-cF9Ydz3GFfljO0GO1Xspv4CFQBsn1IwAmija4pVkdj2DbyWF5A16V3mwqg/exec", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "text/plain",
+                }
+            })
+                .then(response => response.json())
+                .then((response) => {
+
+                    if (response.status !== "Success") {
+                        throw new Error(`Failed to submit form data. ${response.message}`);
+                    }
+
+                    document.getElementById("outreachForm").style.display = "none";
+                    document.getElementById("successMessage").style.display = "block";
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    // re-enable form
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = 'Submit';
+
+                    // show error message
+                    errorMessage.innerHTML = `Error: ${error.message}`;
+                    errorMessage.style.display = "block";
+                });
+        });
+    </script>
+</body>
+
+</html>
