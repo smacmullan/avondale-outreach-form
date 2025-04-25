@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avondale Community Outreach</title>
+    <title data-translate="title">Avondale Community Outreach</title>
     <link rel="stylesheet" href="public/style.css">
     <link rel="icon" type="image/x-icon" href="public/images/favicon.svg">
 </head>
@@ -13,34 +13,32 @@
     <div class="content">
         <div class="form-container">
             <div class="header">
-                <h1>Avondale Community Outreach</h1>
-            </div>
-            <div style="padding: 20px;">
-                <p>Stay connected with your neighbors! </p>
-                <p>Sign up below to receive updates from local community groups bringing neighbors together through news, events, and shared interests.</p>
+                <h1 data-translate="header">Avondale Community Outreach</h1>
             </div>
             <form class="form" id="outreachForm">
+                <div style="margin-bottom: 20px;">
+                    <p data-translate="header">Stay connected with your neighbors!</p>
+                    <p data-translate="description">Sign up below to receive updates from local community groups bringing neighbors together through news, events, and shared interests.</p>
+                </div>
 
-                <label style="margin-bottom: 25px; font-size: 20px;">Community Newsletter Sign-ups</label>
+                <label style="margin-bottom: 25px; font-size: 20px;" data-translate="newsletterSignups">Community Newsletter Sign-ups</label>
                 <div class="checkbox-group">
                     <input type="checkbox" id="newsletter-wals" name="newsletter"
                         value="West Avondale/Logan Square Newsletter" checked>
                     <label for="newsletter-wals">
-                        <b>West Avondale/Logan Square Newsletter</b>
-                        <p class="description">
-                            Hyperlocal news produced by Larry Garret since 1995.
-                            <span class="frequency">Semi-monthly.</span>
-                        </p>
+                        <b data-translate="newsletterWals">West Avondale/Logan Square Newsletter</b>
+                        <p class="description" data-translate="newsletterWalsDesc">Hyperlocal news produced by Larry Garret since 1995.<span
+                                class="frequency">Every few months.</span></p>
                     </label>
                 </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="newsletter-ana" name="newsletter"
                         value="Avondale Neighborhood Association" checked>
                     <label for="newsletter-ana">
-                        <b>Avondale Neighborhood Association</b>
+                        <b data-translate="newsletterAna">Avondale Neighborhood Association</b>
                         <a href="https://www.avondaleneighbors.org" target="_blank"
                             style="display: block; margin-top: 5px;">www.avondaleneighbors.org</a>
-                        <p class="description">
+                        <p class="description" data-translate="newsletterAnaDesc">
                             Community announcements and events around Avondale.
                             <span class="frequency">Weekly.</span>
                         </p>
@@ -50,46 +48,46 @@
                     <input type="checkbox" id="newsletter-aga" name="newsletter" value="Avondale Gardening Alliance"
                         checked>
                     <label for="newsletter-aga">
-                        <b>Avondale Gardening Alliance</b>
+                        <b data-translate="newsletterAga">Avondale Gardening Alliance</b>
                         <a href="https://avondalegardeningalliance.wordpress.com" target="_blank"
                             style="display: block; margin-top: 5px;">avondalegardeningalliance.wordpress.com</a>
-                        <p class="description">
+                        <p class="description" data-translate="newsletterAgaDesc">
                             Free gardening workshops and events focused on bringing together neighbors.
-                            <span class="frequency">Semi-monthly.</span>
+                            <span class="frequency">Every few months.</span>
                         </p>
                     </label>
                 </div>
 
-                <label style="margin-top: 40px; margin-bottom: 5px; font-size: 20px;">Block Club Interest</label>
-                <p>I am interested in forming a block club with my neighbors.</p>
+                <label style="margin-top: 40px; margin-bottom: 5px; font-size: 20px;" data-translate="blockClubInterest">Block Club Interest</label>
+                <p data-translate="blockClubDesc">I am interested in forming a block club with my neighbors.</p>
                 <div class="checkbox-group">
                     <input type="checkbox" id="block-club-interest" name="block-club-interest" value="yes">
-                    <label for="block-club-interest">Yes, please contact me to help organize a block club on my
+                    <label for="block-club-interest" data-translate="blockClubYes">Yes, please contact me to help organize a block club on my
                         street.</label>
                 </div>
 
 
-                <label style="margin-bottom: 25px; margin-top: 40px; font-size: 20px;">Contact Information</label>
-                <label for="name">Name</label>
+                <label style="margin-bottom: 25px; margin-top: 40px; font-size: 20px;" data-translate="contactInfo">Contact Information</label>
+                <label for="name" data-translate="name">Name</label>
                 <input type="text" id="name" placeholder="Name" required>
 
-                <label for="email">Email</label>
+                <label for="email" data-translate="email">Email</label>
                 <input type="email" id="email" placeholder="Email" required>
 
-                <label for="street-address">Address (Optional)</label>
+                <label for="street-address" data-translate="address">Address (Optional)</label>
                 <input type="text" id="street-address" name="street-address" placeholder="Address"
                     autocomplete="street-address">
 
-                <button type="submit" id="submitButton">
+                <button type="submit" id="submitButton" data-translate="submit">
                     Submit
                 </button>
             </form>
             <div id="successMessage" class="success-message" style="display: none;">
-                <p>Thank you for signing up!</p>
-                <p style="font-size: 16px;">Keep an eye out for newsletter confirmation emails. It
+                <p data-translate="successMessage">Thank you for signing up!</p>
+                <p style="font-size: 16px;" data-translate="successDesc">Keep an eye out for newsletter confirmation emails. It
                     might be a few days before these are sent.</p>
             </div>
-            <div id="errorMessage" class="error-message" style="display: none;">
+            <div id="errorMessage" class="error-message" style="display: none;" data-translate="errorMessage">
                 An error occurred. Please try again.
             </div>
         </div>
@@ -144,6 +142,44 @@
                     errorMessage.innerHTML = `Error: ${error.message}`;
                     errorMessage.style.display = "block";
                 });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get("hl") || navigator.language || navigator.userLanguage;
+
+            if (lang.startsWith("es")) {
+                const translations = {
+                    "title": "Alcance Comunitario de Avondale",
+                    "header": "¡Mantente conectado con tus vecinos!",
+                    "description": "Regístrate a continuación para recibir actualizaciones de grupos comunitarios locales que reúnen a los vecinos a través de noticias, eventos e intereses compartidos.",
+                    "newsletterSignups": "Inscripciones al Boletín Comunitario",
+                    "newsletterWals": "Boletín de West Avondale/Logan Square",
+                    "newsletterWalsDesc": "Noticias hiperlocales producidas por Larry Garret desde 1995. Cada dos meses.",
+                    "newsletterAna": "Asociación de Vecinos de Avondale",
+                    "newsletterAnaDesc": "Anuncios comunitarios y eventos en Avondale. Semanal.",
+                    "newsletterAga": "Alianza de Jardinería de Avondale",
+                    "newsletterAgaDesc": "Talleres y eventos gratuitos de jardinería enfocados en reunir a los vecinos. Cada dos meses.",
+                    "blockClubInterest": "Interés en Clubes de Bloque",
+                    "blockClubDesc": "Estoy interesado en formar un club de bloque con mis vecinos.",
+                    "blockClubYes": "Sí, por favor contáctenme para ayudar a organizar un club de bloque en mi calle.",
+                    "contactInfo": "Información de Contacto",
+                    "name": "Nombre",
+                    "email": "Correo Electrónico",
+                    "address": "Dirección (Opcional)",
+                    "submit": "Enviar",
+                    "successMessage": "¡Gracias por registrarte!",
+                    "successDesc": "Esté atento a los correos electrónicos de confirmación del boletín. Puede que pasen unos días antes de que se envíen.",
+                    "errorMessage": "Ocurrió un error. Por favor, inténtelo de nuevo."
+                };
+
+                document.querySelectorAll("[data-translate]").forEach(element => {
+                    const key = element.getAttribute("data-translate");
+                    if (translations[key]) {
+                        element.textContent = translations[key];
+                    }
+                });
+            }
         });
     </script>
 </body>
