@@ -78,6 +78,8 @@
                 <input type="text" id="street-address" name="street-address" placeholder="Address"
                     autocomplete="street-address">
 
+                <input type="hidden" id="language" name="language" value="EN">
+
                 <button type="submit" id="submitButton" data-translate="submit">
                     Submit
                 </button>
@@ -95,60 +97,13 @@
 
     <script>
         const FORM_VERSION = "base";
-        document.getElementById("outreachForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const submitButton = document.getElementById("submitButton");
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Submitting... <span class="spinner"></span>';
-
-            const errorMessage = document.getElementById("errorMessage");
-            // hide error message (if visible)
-            errorMessage.style.display = "none";
-
-            const data = {
-                name: document.getElementById("name").value,
-                address: document.getElementById("street-address").value,
-                email: document.getElementById("email").value,
-                newsletters: Array.from(document.querySelectorAll('input[name="newsletter"]:checked')).map(checkbox => checkbox.value).join(','),
-                blockClubInterest: document.getElementById("block-club-interest").checked ? "Yes" : "No",
-                formVersion: FORM_VERSION
-            };
-
-            fetch("https://script.google.com/macros/s/AKfycbyoq6sI7Wr-cF9Ydz3GFfljO0GO1Xspv4CFQBsn1IwAmija4pVkdj2DbyWF5A16V3mwqg/exec", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "text/plain",
-                }
-            })
-                .then(response => response.json())
-                .then((response) => {
-
-                    if (response.status !== "Success") {
-                        throw new Error(`Failed to submit form data. ${response.message}`);
-                    }
-
-                    document.getElementById("outreachForm").style.display = "none";
-                    document.getElementById("successMessage").style.display = "block";
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    // re-enable form
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = 'Submit';
-
-                    // show error message
-                    errorMessage.innerHTML = `Error: ${error.message}`;
-                    errorMessage.style.display = "block";
-                });
-        });
-
+        // Detect language on page load and set hidden field
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);
             const lang = urlParams.get("hl") || navigator.language || navigator.userLanguage;
-
+            const languageField = document.getElementById("language");
             if (lang.startsWith("es")) {
+                languageField.value = "ES";
                 const translations = {
                     "title": "Alcance Comunitario de Avondale",
                     "header": "¡Mantente conectado con tus vecinos!",
@@ -179,7 +134,59 @@
                         element.textContent = translations[key];
                     }
                 });
+            } else {
+                languageField.value = "EN";
             }
+        });
+
+        document.getElementById("outreachForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const submitButton = document.getElementById("submitButton");
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Submitting... <span class="spinner"></span>';
+
+            const errorMessage = document.getElementById("errorMessage");
+            // hide error message (if visible)
+            errorMessage.style.display = "none";
+
+            const data = {
+                name: document.getElementById("name").value,
+                address: document.getElementById("street-address").value,
+                email: document.getElementById("email").value,
+                newsletters: Array.from(document.querySelectorAll('input[name="newsletter"]:checked')).map(checkbox => checkbox.value).join(','),
+                blockClubInterest: document.getElementById("block-club-interest").checked ? "Yes" : "No",
+                formVersion: FORM_VERSION,
+                language: document.getElementById("language").value
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbwkX8DkeBI_1AlNwXPDxc3cuED44Qyps3had4Py4z7eUblSUskrWBDtA7KyroCc2BrChw/exec", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "text/plain",
+                }
+            })
+                .then(response => response.json())
+                .then((response) => {
+
+                    if (response.status !== "Success") {
+                        throw new Error(`Failed to submit form data. ${response.message}`);
+                    }
+
+                    document.getElementById("outreachForm").style.display = "none";
+                    document.getElementById("successMessage").style.display = "block";
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    // re-enable form
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = 'Submit';
+
+                    // show error message
+                    errorMessage.innerHTML = `Error: ${error.message}`;
+                    errorMessage.style.display = "block";
+                });
         });
     </script>
 </body>
