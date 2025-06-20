@@ -29,7 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
             "submit": "Enviar",
             "successMessage": "¡Gracias por registrarte!",
             "successDesc": "Esté atento a los correos electrónicos de confirmación del boletín. Puede que pasen unos días antes de que se envíen.",
-            "errorMessage": "Ocurrió un error. Por favor, inténtelo de nuevo."
+            "errorMessage": "Ocurrió un error. Por favor, inténtelo de nuevo.",
+            "newsletterMlg": "Jardín de Vida Consciente",
+            "newsletterMlgDesc": "Jardín comunitario junto al Parque Avondale con horas felices semanales gratuitas y jornadas de trabajo en el jardín dos veces por semana.",
+            "newsletterAamg": "Jardín Mural de Avondale & Addison",
+            "newsletterAamgDesc": "Jardín con murales y jornadas de trabajo en el jardín ocasionales. Cada pocos meses.",
+            "newsletterKoz": "Consejo Asesor del Parque Koz",
+            "newsletterKozDesc": "Eventos y oportunidades de voluntariado en el Parque Koz. Mensualmente.",
         };
 
         document.querySelectorAll("[data-translate]").forEach(element => {
