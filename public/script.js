@@ -95,9 +95,12 @@ document.getElementById("outreachForm").addEventListener("submit", function (e) 
             if (shareButton) {
                 shareButton.onclick = function () {
                     if (navigator.share) {
+                        const lang = document.getElementById("language").value;
                         navigator.share({
                             title: document.title,
-                            text: "Get connected with neighbors and local community groups! " + window.location.href,
+                            text: lang === "ES"
+                                ? "¡Conéctate con tus vecinos y grupos comunitarios locales!"
+                                : "Get connected with neighbors and local community groups!",
                             url: window.location.href
                         });
                     } else {
