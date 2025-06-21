@@ -31,11 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "successDesc": "Esté atento a los correos electrónicos de confirmación del boletín. Puede que pasen unos días antes de que se envíen.",
             "errorMessage": "Ocurrió un error. Por favor, inténtelo de nuevo.",
             "newsletterMlg": "Jardín de Vida Consciente",
-            "newsletterMlgDesc": "Jardín comunitario junto al Parque Avondale con horas felices semanales gratuitas y jornadas de trabajo en el jardín dos veces por semana.",
+            "newsletterMlgDesc": "Jardín comunitario junto al Parque Avondale con \"happy hours\" semanales gratuitas y jornadas de trabajo en el jardín dos veces por semana.",
             "newsletterAamg": "Jardín Mural de Avondale & Addison",
             "newsletterAamgDesc": "Jardín con murales y jornadas de trabajo en el jardín ocasionales. Cada pocos meses.",
             "newsletterKoz": "Consejo Asesor del Parque Koz",
             "newsletterKozDesc": "Eventos y oportunidades de voluntariado en el Parque Koz. Mensualmente.",
+            "shareButton": "Comparte con un vecino",
         };
 
         document.querySelectorAll("[data-translate]").forEach(element => {
@@ -86,8 +87,24 @@ document.getElementById("outreachForm").addEventListener("submit", function (e) 
             if (response.status !== "Success") {
                 throw new Error(`Failed to submit form data. ${response.message}`);
             }
+            // Show success message
             document.getElementById("outreachForm").style.display = "none";
             document.getElementById("successMessage").style.display = "block";
+            // Add share button logic
+            const shareButton = document.getElementById("shareButton");
+            if (shareButton) {
+                shareButton.onclick = function () {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: document.title,
+                            text: "Get connected with neighbors and local community groups! " + window.location.href,
+                            url: window.location.href
+                        });
+                    } else {
+                        alert("Sharing is not supported on this device. You can copy the link: " + window.location.href);
+                    }
+                };
+            }
         })
         .catch(error => {
             console.error("Error:", error);

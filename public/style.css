@@ -87,6 +87,18 @@ body {
     /* Light blue glow */
 }
 
+.form-container button.share-button {
+    background-color: #4782f9;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 18px;
+    display: inline-block;
+}
+
+.form-container button.share-button:hover {
+    background-color: #2367ed
+}
+
 .form-container button {
     width: auto;
     padding: 15px 30px;
