@@ -36,6 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "newsletterAamgDesc": "Jardín con murales y jornadas de trabajo en el jardín ocasionales. Cada pocos meses.",
             "newsletterKoz": "Consejo Asesor del Parque Koz",
             "newsletterKozDesc": "Eventos y oportunidades de voluntariado en el Parque Koz. Mensualmente.",
+            "newsletterBrands": "Consejo Asesor del Parque Brands",
+            "newsletterBrandsDesc": "Eventos y oportunidades de voluntariado en el Parque Brands.",
+            "newsletterFcvl": "Amigos de la escuela de Carl Von Linne",
+            "newsletterFcvlDesc": "Apoya programas culturales, educativos y de enriquecimiento en Avondale y recauda fondos para la escuela primaria CVL para programas fuera del presupuesto escolar.",
             "shareButton": "Comparte con un vecino",
         };
 
