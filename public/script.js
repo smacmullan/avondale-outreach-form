@@ -4,7 +4,8 @@
 // Detect language on page load and set hidden field
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const lang = urlParams.get("hl") || navigator.language || navigator.userLanguage;
+    // Prefer hl param, fallback to browser language
+    const lang = (urlParams.get("hl") || navigator.language || navigator.userLanguage || "en").toLowerCase();
     const languageField = document.getElementById("language");
     if (lang.startsWith("es")) {
         languageField.value = "ES";
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "newsletterKozDesc": "Eventos y oportunidades de voluntariado en el Parque Koz. Mensualmente.",
             "newsletterBrands": "Consejo Asesor del Parque Brands",
             "newsletterBrandsDesc": "Eventos y oportunidades de voluntariado en el Parque Brands.",
-            "newsletterFcvl": "Amigos de la escuela de Carl Von Linne",
+            "newsletterFcvl": "Amigos de la Escuela de Carl Von Linne",
             "newsletterFcvlDesc": "Apoya programas culturales, educativos y de enriquecimiento en Avondale y recauda fondos para la escuela primaria CVL para programas fuera del presupuesto escolar.",
             "shareButton": "Comparte con un vecino",
         };
@@ -51,6 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     } else {
         languageField.value = "EN";
+    }
+
+    // Language toggle button logic
+    const langToggleBtn = document.getElementById("langToggleBtn");
+    if (langToggleBtn) {
+        const isSpanish = lang.startsWith("es");
+        langToggleBtn.textContent = isSpanish ? "English" : "Español";
+        langToggleBtn.onclick = function () {
+            const params = new URLSearchParams(window.location.search);
+            params.set("hl", isSpanish ? "en" : "es");
+            window.location.search = params.toString();
+        };
     }
 });
 
