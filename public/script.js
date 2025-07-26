@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "newsletterBrandsDesc": "Eventos y oportunidades de voluntariado en el Parque Brands.",
             "newsletterFcvl": "Amigos de la Escuela de Carl Von Linne",
             "newsletterFcvlDesc": "Apoya programas culturales, educativos y de enriquecimiento en Avondale y recauda fondos para la escuela primaria CVL para programas fuera del presupuesto escolar.",
+            "newsletterHh": "Harmony House para Gatos",
+            "newsletterHhDesc": "Actualizaciones y oportunidades de voluntariado para el rescate de gatos local de Avondale.",
             "shareButton": "Comparte con un vecino",
         };
 
