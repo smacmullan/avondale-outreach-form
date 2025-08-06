@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="title">Avondale Community Outreach</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="icon" type="image/x-icon" href="/public/images/favicon.svg">
+</head>
+
+<body>
+    <div class="content">
+        <div class="form-container">
+            <button id="langToggleBtn" class="lang-toggle-btn">Español</button>
+            <div class="header">
+                <h1 data-translate="title">Avondale Community Outreach</h1>
+            </div>
+            <form class="form" id="outreachForm">
+                <div style="margin-bottom: 20px;">
+                    <p data-translate="header">Stay connected with your neighbors!</p>
+                    <p data-translate="description">Sign up below to receive updates from local community groups
+                        bringing neighbors together through news, events, and shared interests.</p>
+                </div>
+
+                <label style="margin-bottom: 25px; font-size: 20px;" data-translate="newsletterSignups">Community
+                    Newsletter Sign-ups</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-ana" name="newsletter"
+                        value="Avondale Neighborhood Association" checked>
+                    <label for="newsletter-ana">
+                        <b data-translate="newsletterAna">Avondale Neighborhood Association</b>
+                        <a href="https://www.avondaleneighbors.org" target="_blank"
+                            style="display: block; margin-top: 5px;">www.avondaleneighbors.org</a>
+                        <p class="description" data-translate="newsletterAnaDesc">
+                            Community announcements and events around Avondale.
+                            <span class="frequency">Weekly.</span>
+                        </p>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-aga" name="newsletter" value="Avondale Gardening Alliance"
+                        checked>
+                    <label for="newsletter-aga">
+                        <b data-translate="newsletterAga">Avondale Gardening Alliance</b>
+                        <a href="https://avondalegardeningalliance.wordpress.com" target="_blank"
+                            style="display: block; margin-top: 5px;">avondalegardeningalliance.wordpress.com</a>
+                        <p class="description" data-translate="newsletterAgaDesc">
+                            Free gardening workshops and events focused on bringing together neighbors.
+                            <span class="frequency">Every few months.</span>
+                        </p>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-brands" name="newsletter" value="Brands Park Advisory Council" checked>
+                    <label for="newsletter-brands">
+                        <b data-translate="newsletterBrands">Brands Park Advisory Council</b>
+                        <a href="https://www.facebook.com/BrandsParkAvondale" target="_blank" style="display: block; margin-top: 5px;">www.facebook.com/BrandsParkAvondale</a>
+                        <p class="description" data-translate="newsletterBrandsDesc">
+                            Events and volunteer opportunities at Brands Park.
+                        </p>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter-fcvl" name="newsletter" value="Friends of Carl Von Linne School" checked>
+                    <label for="newsletter-fcvl">
+                        <b data-translate="newsletterFcvl">Friends of Carl Von Linne School</b>
+                        <a href="https://www.fcvlschool.org/" target="_blank" style="display: block; margin-top: 5px;">fcvlschool.org</a>
+                        <p class="description" data-translate="newsletterFcvlDesc">
+                            Supports cultural, educational, and enrichment programs in Avondale and raises funds for CVL Elementary for programs
+                            beyond the school's budget.
+                        </p>
+                    </label>
+                </div>
+
+                <label style="margin-top: 40px; margin-bottom: 5px; font-size: 20px;"
+                    data-translate="blockClubInterest">Block Club Interest</label>
+                <p data-translate="blockClubDesc">I am interested in forming a block club with my neighbors.</p>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="block-club-interest" name="block-club-interest" value="yes">
+                    <label for="block-club-interest" data-translate="blockClubYes">Yes, please contact me to help
+                        organize a block club on my
+                        street.</label>
+                </div>
+
+
+                <label style="margin-bottom: 25px; margin-top: 40px; font-size: 20px;"
+                    data-translate="contactInfo">Contact Information</label>
+                <label for="name" data-translate="name">Name</label>
+                <input type="text" id="name" placeholder="Name" required>
+
+                <label for="email" data-translate="email">Email</label>
+                <input type="email" id="email" placeholder="Email" required>
+
+                <label for="street-address" data-translate="address">Address (Optional)</label>
+                <input type="text" id="street-address" name="street-address" placeholder="Address"
+                    autocomplete="street-address">
+
+                <input type="hidden" id="language" name="language" value="EN">
+
+                <button type="submit" id="submitButton" data-translate="submit">
+                    Submit
+                </button>
+            </form>
+            <div id="successMessage" class="success-message" style="display: none;">
+                <p data-translate="successMessage">Thank you for signing up!</p>
+                <p style="font-size: 16px;" data-translate="successDesc">Keep an eye out for newsletter confirmation
+                    emails. It
+                    might be a few days before these are sent.</p>
+                <button id="shareButton" class="share-button" data-translate="shareButton">
+                    Share with a neighbor
+                </button>
+            </div>
+            <div id="errorMessage" class="error-message" style="display: none;" data-translate="errorMessage">
+                An error occurred. Please try again.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const FORM_VERSION = "asrb";
+        // Addison Sacramento River Belmont
+    </script>
+    <script src="/public/script.js"></script>
+</body>
+
+</html>
